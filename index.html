@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Haven</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #4caf50;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    .book-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 2rem;
+    }
+
+    .book-card {
+      width: 200px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .book-content {
+      display: none;
+      padding: 2rem;
+      background: #f9f9f9;
+    }
+
+    .book-content.active {
+      display: block;
+    }
+
+    .back-button {
+      margin-top: 1rem;
+      background: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background: #388e3c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Book Haven</h1>
+  </header>
+
+  <!-- Book List Section -->
+  <div class="book-list">
+    <!-- JavaScript will populate books here -->
+  </div>
+
+  <!-- Book Content Section -->
+  <div class="book-content">
+    <h2 id="book-title"></h2>
+    <p id="book-content"></p>
+    <button class="back-button" onclick="goBack()">Back to Books</button>
+  </div>
+
+  <script>
+    // Book data
+    const books = [
+      {
+        title: "The Great Gatsby",
+        author: "F. Scott Fitzgerald",
+        content: "This is the content of *The Great Gatsby* by F. Scott Fitzgerald. It's a classic tale of love, ambition, and tragedy."
+      },
+      {
+        title: "To Kill a Mockingbird",
+        author: "Harper Lee",
+        content: "This is the content of *To Kill a Mockingbird* by Harper Lee. A profound exploration of justice and human compassion."
+      },
+      {
+        title: "1984",
+        author: "George Orwell",
+        content: "This is the content of *1984* by George Orwell. A dystopian novel about totalitarianism and surveillance."
+      }
+    ];
+
+    const bookList = document.querySelector(".book-list");
+    const bookContent = document.querySelector(".book-content");
+    const bookTitle = document.getElementById("book-title");
+    const bookContentText = document.getElementById("book-content");
+
+    // Display books
+    function displayBooks() {
+      books.forEach((book, index) => {
+        const bookCard = document.createElement("div");
+        bookCard.className = "book-card";
+        bookCard.innerHTML = `
+          <h3>${book.title}</h3>
+          <p>by ${book.author}</p>
+        `;
+        bookCard.onclick = () => showBookContent(index);
+        bookList.appendChild(bookCard);
+      });
+    }
+
+    // Show book content
+    function showBookContent(index) {
+      const book = books[index];
+      bookTitle.textContent = book.title;
+      bookContentText.textContent = book.content;
+      bookList.style.display = "none";
+      bookContent.classList.add("active");
+    }
+
+    // Go back to book list
+    function goBack() {
+      bookContent.classList.remove("active");
+      bookList.style.display = "flex";
+    }
+
+    // Initialize
+    displayBooks();
+  </script>
+</body>
+</html>
