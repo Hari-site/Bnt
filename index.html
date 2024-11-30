@@ -1,145 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Haven</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple E-Commerce</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    header {
-      background: #4caf50;
-      color: white;
-      text-align: center;
-      padding: 1rem 0;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f8f8;
+        }
 
-    .book-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 2rem;
-    }
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #232f3e;
+            color: #fff;
+        }
 
-    .book-card {
-      width: 200px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+        .header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
 
-    .book-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
+        .nav a {
+            margin: 0 1rem;
+            color: #fff;
+            text-decoration: none;
+        }
 
-    .book-content {
-      display: none;
-      padding: 2rem;
-      background: #f9f9f9;
-    }
+        .nav a:hover {
+            text-decoration: underline;
+        }
 
-    .book-content.active {
-      display: block;
-    }
+        .search-bar input {
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+        }
 
-    .back-button {
-      margin-top: 1rem;
-      background: #4caf50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+        .search-bar button {
+            padding: 0.5rem;
+            background-color: #febd69;
+            border: none;
+            cursor: pointer;
+        }
 
-    .back-button:hover {
-      background: #388e3c;
-    }
-  </style>
+        .cart a {
+            color: #febd69;
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 2rem;
+            background-color: #febd69;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero p {
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .hero button {
+            padding: 0.75rem 1.5rem;
+            background-color: #232f3e;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 2rem;
+            background-color: #fff;
+        }
+
+        .products h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+        }
+
+        .product img {
+            max-width: 100%;
+        }
+
+        .product button {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #232f3e;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #232f3e;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Book Haven</h1>
-  </header>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">E-Shop</div>
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Deals</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Search products...">
+            <button>Search</button>
+        </div>
+        <div class="cart">
+            <a href="#">Cart (0)</a>
+        </div>
+    </header>
 
-  <!-- Book List Section -->
-  <div class="book-list">
-    <!-- JavaScript will populate books here -->
-  </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to E-Shop</h1>
+        <p>Your one-stop shop for everything!</p>
+        <button>Shop Now</button>
+    </section>
 
-  <!-- Book Content Section -->
-  <div class="book-content">
-    <h2 id="book-title"></h2>
-    <p id="book-content"></p>
-    <button class="back-button" onclick="goBack()">Back to Books</button>
-  </div>
+    <!-- Products Section -->
+    <section class="products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="https://via.placeholder.com/150" alt="Product 1">
+                <h3>Product 1</h3>
+                <p>$25.00</p>
+                <button id="Amzn 1">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/150" alt="Product 2">
+                <h3>Product 2</h3>
+                <p>$45.00</p>
+                <button id="Amzn 2">Buy Now
+                </button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/150" alt="Product 3">
+                <h3>Product 3</h3>
+                <p>$65.00</p>
+                <button id="Amzn 3">Buy Know</button>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    // Book data
-    const books = [
-      {
-        title: "The Great Gatsby",
-        author: "F. Scott Fitzgerald",
-        content: "This is the content of *The Great Gatsby* by F. Scott Fitzgerald. It's a classic tale of love, ambition, and tragedy."
-      },
-      {
-        title: "To Kill a Mockingbird",
-        author: "Harper Lee",
-        content: "This is the content of *To Kill a Mockingbird* by Harper Lee. A profound exploration of justice and human compassion."
-      },
-      {
-        title: "1984",
-        author: "George Orwell",
-        content: "This is the content of *1984* by George Orwell. A dystopian novel about totalitarianism and surveillance."
-      }
-    ];
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2024 E-Shop. All rights reserved.</p>
+    </footer>
 
-    const bookList = document.querySelector(".book-list");
-    const bookContent = document.querySelector(".book-content");
-    const bookTitle = document.getElementById("book-title");
-    const bookContentText = document.getElementById("book-content");
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Add click event for the first button (YouTube)
+        document.getElementById('Amzn 1').addEventListener('click', () => {
+            window.location.href = "https://www.youtube.com";
+        });
 
-    // Display books
-    function displayBooks() {
-      books.forEach((book, index) => {
-        const bookCard = document.createElement("div");
-        bookCard.className = "book-card";
-        bookCard.innerHTML = `
-          <h3>${book.title}</h3>
-          <p>by ${book.author}</p>
-        `;
-        bookCard.onclick = () => showBookContent(index);
-        bookList.appendChild(bookCard);
-      });
-    }
+        // Add click event for the second button (Instagram)
+        document.getElementById('Amzn 2').addEventListener('click', () => {
+            window.location.href = "https://www.instagram.com";
+        });
 
-    // Show book content
-    function showBookContent(index) {
-      const book = books[index];
-      bookTitle.textContent = book.title;
-      bookContentText.textContent = book.content;
-      bookList.style.display = "none";
-      bookContent.classList.add("active");
-    }
-
-    // Go back to book list
-    function goBack() {
-      bookContent.classList.remove("active");
-      bookList.style.display = "flex";
-    }
-
-    // Initialize
-    displayBooks();
-  </script>
+        // Add click event for the third button (Google)
+        document.getElementById('Amzn 3').addEventListener('click', () => {
+            window.location.href = "https://www.google.com";
+        });
+    });
+</script>
 </body>
 </html>
+
+    
